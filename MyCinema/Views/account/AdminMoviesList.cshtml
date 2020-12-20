@@ -1,0 +1,88 @@
+﻿@model IEnumerable<MyCinema.Movy>
+
+@{
+    ViewBag.Title = "AdminMoviesList";
+}
+
+<h2>AdminMoviesList</h2>
+<div>
+    @Html.ActionLink("HomePage", "AdminPage", "Account")
+</div>
+<p>
+    @Html.ActionLink("Create New", "AddMovie", "Admin")
+    
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age_limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_dis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_hall)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movie_pic)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Age_limit)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_dis)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.movie_hall)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.price)
+    </td>
+    <td>
+        <img src="@Url.Content("~/Images/"+item.movie_pic)" height="100" width="100" />
+    </td>
+    <td>
+        @* @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+        @using (Html.BeginForm("Delete", "Account", new { id = item.Id }))
+        {
+            <input type="submit" value="Delete" class="btn btn-default" onclick="return confirm('Are you shure you want to delete @item.movie_name');" />
+        }
+    </td>
+</tr>
+}
+
+</table>
