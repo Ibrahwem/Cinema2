@@ -16,6 +16,7 @@ namespace MyCinema.Controllers
             Database1Entities dbe = new Database1Entities();
             return View(dbe.Movies.ToList());
         }
+       
 
         
     }

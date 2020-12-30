@@ -21,6 +21,40 @@ namespace MyCinema.Controllers
             return View("AdminPage");
         }
         [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Database1Entities dbe = new Database1Entities();
+            Movy m = dbe.Movies.Find(id);
+            if (m == null)
+            {
+                return HttpNotFound();
+            }
+            return View(m);
+        }
+        
+        [HttpPost]
+        public ActionResult Edit(Movy m)
+        {
+            if (m.movie_hall == "A1" || m.movie_hall == "A2" || m.movie_hall == "A3" || m.movie_hall == "B1" || m.movie_hall == "B2")
+             {
+                string dat = "update [Movies] set movie_date='" + m.movie_date+ "',movie_time='"+m.movie_time+ "',movie_hall= '" + m.movie_hall + "',price= '" + m.price + "' where Id='" + m.Id + "'";
+                SqlCommand comm = new SqlCommand(dat, con);
+                con.Open();
+                comm.ExecuteNonQuery();
+                con.Close();
+                ViewBag.SuccessMessage = "Movie Updated successfully.";
+                 return View("AdminPage");
+
+             }
+             else if(m.movie_hall!=null)
+             {
+                 ViewBag.DuplicateMessage = "hall number Should be A1,A2,A3,B1,B2";
+                 return View();
+             }
+            return View();
+
+        }
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -66,7 +100,9 @@ namespace MyCinema.Controllers
                 return View("Login");
             }
         }
+        
 
-       
+
+
     }
 }

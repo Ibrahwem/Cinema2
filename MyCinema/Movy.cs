@@ -11,18 +11,39 @@ namespace MyCinema
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Movy
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Movie's Name")]
         public string movie_name { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Movie Description")]
         public string movie_dis { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Movie's Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:Day/Mont/year}", ApplyFormatInEditMode = true)]
         public string movie_date { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
+        [Display(Name = "Movie's Time")]
         public string movie_time { get; set; }
         public string movie_pic { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Hall [A1,A2,A3,B1,B2]")]
         public string movie_hall { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Price")]
         public string price { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Category")]
         public string Category { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "age limitation")]
         public string Age_limit { get; set; }
     }
 }

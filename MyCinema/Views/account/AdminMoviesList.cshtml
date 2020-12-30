@@ -76,7 +76,10 @@
         <img src="@Url.Content("~/Images/"+item.movie_pic)" height="100" width="100" />
     </td>
     <td>
-        @* @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+        @using (Html.BeginForm("Edit", "Account", new { id = item.Id }))
+        {
+            <input type="submit" value="Edit Movie details" class="btn btn-default" onclick="return confirm('Are you shure you want to Edit @item.movie_name');" />
+        } |
         @using (Html.BeginForm("Delete", "Account", new { id = item.Id }))
         {
             <input type="submit" value="Delete" class="btn btn-default" onclick="return confirm('Are you shure you want to delete @item.movie_name');" />
