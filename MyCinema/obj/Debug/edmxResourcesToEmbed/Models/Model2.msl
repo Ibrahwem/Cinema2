@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database1Model1StoreContainer" CdmEntityContainer="Database1Entities1">
+    <EntitySetMapping Name="BookSeats">
+      <EntityTypeMapping TypeName="Database1Model1.BookSeat">
+        <MappingFragment StoreEntitySet="BookSeat">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="movieName" ColumnName="movieName" />
+          <ScalarProperty Name="moviedate" ColumnName="moviedate" />
+          <ScalarProperty Name="movietime" ColumnName="movietime" />
+          <ScalarProperty Name="seatno" ColumnName="seatno" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

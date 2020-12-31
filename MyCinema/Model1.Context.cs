@@ -32,6 +32,6 @@ namespace MyCinema
         public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<BookingTable> BookingTable { get; set; }
 
-
+        public System.Data.Entity.DbSet<MyCinema.Models.BookSeat> BookSeats { get; set; }
     }
 }

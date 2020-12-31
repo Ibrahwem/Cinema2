@@ -12,8 +12,6 @@ namespace MyCinema.Controllers
     public class accountController : Controller
     {
 
-        int count = 1;
-        bool flag=true;
         readonly SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database1.mdf;Integrated Security=True");
        
         [HttpPost]
@@ -111,7 +109,7 @@ namespace MyCinema.Controllers
             Database1Entities dbe = new Database1Entities();
             var item = dbe.Movies.Where(a => a.Id == id).FirstOrDefault();
             BookSeat vm = new BookSeat();
-            vm.Id = id;
+            vm.movieId = id.ToString();
             vm.movieName = item.movie_name;
             vm.moviedate = item.movie_date;
             vm.movietime = item.movie_time;
@@ -126,9 +124,10 @@ namespace MyCinema.Controllers
             string moviename = vm.movieName;
             string moviedate = vm.moviedate;
             string movietime = vm.movietime;
-            if (checkSeat(moviename,moviedate,movietime,seatno))
+            string movieId = vm.movieId;
+            if (checkSeat(movieId, seatno))
             {
-                string dat = "Insert into [BookSeat](movieName,moviedate,movietime,seatno,Full_Name) Values('" + moviename+ "','" + moviedate+ "','" + movietime + "','" + seatno + "','" + vm.Full_Name + "')";
+                string dat = "Insert into [BookSeat](movieName,moviedate,movietime,seatno,Full_Name,movieId) Values('" + moviename+ "','" + moviedate+ "','" + movietime + "','" + seatno + "','" + vm.Full_Name + "','" + movieId + "')";
                 SqlCommand comm = new SqlCommand(dat, con);
                 con.Open();
                 comm.ExecuteNonQuery();
@@ -143,9 +142,9 @@ namespace MyCinema.Controllers
             }
             return View("Booking");
         }
-        private bool checkSeat(string moviename, string moviedate, string movietime, string seatno)
+        private bool checkSeat(string movieId ,string seatno)
         {
-            string check = " select count(*) from [BookSeat] where movieName ='" + moviename + "' and moviedate='" + moviedate + "' and movietime='" + movietime + "' and seatno='" + seatno+"'";
+            string check = " select count(*) from [BookSeat] where movieId ='" + movieId+ "' and seatno='" + seatno+"'";
             SqlCommand com = new SqlCommand(check, con);
             con.Open();
             int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
@@ -157,26 +156,14 @@ namespace MyCinema.Controllers
             else 
                 return false;
         }
-        
-       /* public ActionResult ChoosenSeats(string date,string time, BookSeat booknow)
+
+        public ActionResult ChoosenSeats(string searching)
         {
-            string seatno = string.Empty;
-            Database1Entities dbe = new Database1Entities();
-            var movieslist = dbe.BookSeat.Where(a => a.moviedate == date && a.movietime == time).ToList();
-            if (movieslist != null)
-            {
-                var getseatno = movieslist.Where(b => b.movieName == booknow.movieName).ToList();
-                if (getseatno != null)
-                {
-                    foreach (var item in getseatno)
-                    {
-                        seatno = seatno + " " + item.seatno;
-                    }
-                    TempData["SNO"] = "Already Booked" + seatno;
-                }
-            }
-            return View();
-        }*/
+
+            Database1Entities1 db = new Database1Entities1();
+            return View(db.BookSeats.Where(x =>x.movieId.Contains(searching)||searching==null).ToList());
+                
+        }
         /*check*/
         /*
         public ActionResult SBooking(int id=0)

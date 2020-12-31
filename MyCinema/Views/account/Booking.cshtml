@@ -16,6 +16,13 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
+        @Html.LabelFor(model => model.movieId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.movieId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.movieId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(model => model.movieName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.movieName, new { htmlAttributes = new { @class = "form-control" } })
@@ -70,8 +77,12 @@
 
 }
 <div>
-    
-    @Html.ActionLink("Check the choosen seats", "ChoosenSeats")
+    <br />
+
+    @using (Html.BeginForm("ChoosenSeats", "Account"))
+    {
+        <input type="submit" value="Check Seats" class="btn btn-default" onclick="return confirm('You should enter the movie id in choosen seats page to know the booked seats [you can see the movie Id in the top of page]');" />
+    }
 </div>
 <div>
     @Html.ActionLink("Back to List", "UsersMoviesList")

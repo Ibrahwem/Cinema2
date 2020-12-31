@@ -1,7 +1,35 @@
-﻿
-@{
-    ViewBag.Title = "ChoosenSeats";
+﻿@model IEnumerable<MyCinema.Models.BookSeat>
+<h2>Enter Movie Id to see the booked seats [you can know the movie Id the booking page]</h2>
+
+
+@using (Html.BeginForm("ChoosenSeats", "Account", FormMethod.Get))
+{
+    @Html.TextBox("searching")
+    <input type="submit" value="search" />
 }
-
-<h2>@TempData["SNO"]</h2>
-
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Booked Seats</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    no seats booked.
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.seatno</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
