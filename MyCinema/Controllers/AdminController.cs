@@ -25,7 +25,7 @@ namespace MyCinema.Controllers
         {
             if (m.hall == "A1" || m.hall == "A2" || m.hall == "A3" || m.hall == "B1" || m.hall == "B2")
             {
-                string check = " select count(*) from [Movies] where movie_date ='" + m.Date + "' and movie_hall='" + m.hall + "'";
+                string check = " select count(*) from [Movies] where movie_date ='" + m.Date + "'and movie_time='" + m.Time + "' and movie_hall='" + m.hall + "'";
                 SqlCommand com = new SqlCommand(check, con);
                 con.Open();
                 int temp = Convert.ToInt32(com.ExecuteScalar().ToString());

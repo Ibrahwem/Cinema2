@@ -127,7 +127,7 @@ namespace MyCinema.Controllers
             string movietime = vm.movietime;
             if (checkSeat(moviename,moviedate,movietime,seatno))
             {
-                string dat = "Insert into [BookSeat](movieName,moviedate,movietime,seatno) Values('" + moviename+ "','" + moviedate+ "','" + movietime + "','" + seatno + "')";
+                string dat = "Insert into [BookSeat](movieName,moviedate,movietime,seatno,Full_Name) Values('" + moviename+ "','" + moviedate+ "','" + movietime + "','" + seatno + "','" + vm.Full_Name + "')";
                 SqlCommand comm = new SqlCommand(dat, con);
                 con.Open();
                 comm.ExecuteNonQuery();
@@ -155,8 +155,12 @@ namespace MyCinema.Controllers
             }
             else 
                 return false;
-            }
+        }
 
+        public ActionResult ChoosenSeats()
+        {
+            return View();
+        }
 
     }
 }

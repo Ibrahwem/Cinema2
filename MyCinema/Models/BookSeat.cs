@@ -8,6 +8,8 @@ namespace MyCinema.Models
     public class BookSeat
     {
         public int Id { get; set; }
+        public string Full_Name { get; set; }
+
         public string movieName { get; set; }
         public string moviedate { get; set; }
         public string movietime { get; set; }
