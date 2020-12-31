@@ -17,6 +17,7 @@ namespace MyCinema.Models
 
         public string Amount { get; set; }
         public int MovieId { get; set; }
+        
 
     }
 }

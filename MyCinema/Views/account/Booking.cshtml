@@ -63,10 +63,14 @@
             <label class="label-danger">@ViewBag.DuplicateMessage</label>
         </div>
     </div>
+    <div>
+        @TempData["Sucess"]
+    </div>
 </div>
 
 }
 <div>
+    
     @Html.ActionLink("Check the choosen seats", "ChoosenSeats")
 </div>
 <div>

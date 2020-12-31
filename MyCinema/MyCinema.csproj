@@ -227,6 +227,8 @@
     <Content Include="Views\account\Edit.cshtml" />
     <Content Include="Views\account\BuyTicket.cshtml" />
     <Content Include="Views\account\Booking.cshtml" />
+    <Content Include="Views\account\ChoosenSeats.cshtml" />
+    <Content Include="Views\account\SBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />

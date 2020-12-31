@@ -12,7 +12,8 @@ namespace MyCinema.Controllers
     public class accountController : Controller
     {
 
-        
+        int count = 1;
+        bool flag=true;
         readonly SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database1.mdf;Integrated Security=True");
        
         [HttpPost]
@@ -132,8 +133,8 @@ namespace MyCinema.Controllers
                 con.Open();
                 comm.ExecuteNonQuery();
                 con.Close();
-                ViewBag.DuplicateMessage = "OK";
-                
+                TempData["Sucess"] = "Seat booked ,check card";
+
 
             }
             else
@@ -156,11 +157,97 @@ namespace MyCinema.Controllers
             else 
                 return false;
         }
-
-        public ActionResult ChoosenSeats()
+        
+       /* public ActionResult ChoosenSeats(string date,string time, BookSeat booknow)
         {
+            string seatno = string.Empty;
+            Database1Entities dbe = new Database1Entities();
+            var movieslist = dbe.BookSeat.Where(a => a.moviedate == date && a.movietime == time).ToList();
+            if (movieslist != null)
+            {
+                var getseatno = movieslist.Where(b => b.movieName == booknow.movieName).ToList();
+                if (getseatno != null)
+                {
+                    foreach (var item in getseatno)
+                    {
+                        seatno = seatno + " " + item.seatno;
+                    }
+                    TempData["SNO"] = "Already Booked" + seatno;
+                }
+            }
             return View();
+        }*/
+        /*check*/
+        /*
+        public ActionResult SBooking(int id=0)
+        {
+            Database1Entities dbe = new Database1Entities();
+            var item = dbe.Movies.Where(a => a.Id == id).FirstOrDefault();
+            BookNowViewModel vm = new BookNowViewModel();
+            vm.Movie_Name = item.movie_name;
+            vm.hall = item.movie_hall;
+            vm.date = item.movie_date;
+            vm.time = item.movie_time;
+            vm.Amount = item.price;
+            vm.MovieId = id;
+            return View(vm);
         }
+        [HttpPost]
+        public ActionResult AddSBooking(BookNowViewModel vm)
+        {
+            Database1Entities dbe = new Database1Entities();
+            List<BookingTable> booking = new List<BookingTable>();
+            List<Cart> carts = new List<Cart>();
+            string seatno = vm.SeatNo;
+            int movieId = vm.MovieId;
+            string[] seatnoarray = seatno.Split(',');
+            count = seatnoarray.Length;
+            if (checkSeat2(seatno, movieId) == false)
+            {
+                foreach (var item in seatnoarray)
+                {
+                    carts.Add(new Cart { seatno = vm.SeatNo, UserId = vm.User_Name, date = vm.date, time = vm.time, Amount = vm.Amount, MovieId = vm.MovieId });
+                }
+                foreach (var item in carts)
+                {
+                    dbe.Cart.Add(item);
+                    dbe.SaveChanges();
+                }
+                TempData["Sucess"] = "Seat booked ,check card";
 
+
+            }
+            else
+                TempData["seatnomsg"] = "seat already booked please change your seat number ";
+
+            return View("SBooking");
+
+        }
+        private bool checkSeat2(string seatno,int movieId)
+        {
+            Database1Entities dbe = new Database1Entities();
+            string seats = seatno;
+            string[] seatreserve = seats.Split(',');
+            var seatlist = dbe.BookingTable.Where(a => a.MovieDetailsId == movieId).ToList();
+            
+            foreach (var item in seatlist)
+            {
+                string alreadybooked = item.seatno;
+                foreach (var item1 in seatreserve)
+                {
+                    if (item1 == alreadybooked)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            if (flag == false)
+            {
+                return true;
+            }
+            else
+                return false;
+        }*/
     }
 }

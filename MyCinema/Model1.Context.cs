@@ -9,13 +9,14 @@
 
 namespace MyCinema
 {
+    using MyCinema.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
     public partial class Database1Entities : DbContext
     {
-        internal object cart;
+        
 
         public Database1Entities()
             : base("name=Database1Entities")
@@ -28,5 +29,9 @@ namespace MyCinema
         }
     
         public virtual DbSet<Movy> Movies { get; set; }
+        public virtual DbSet<Cart> Cart { get; set; }
+        public virtual DbSet<BookingTable> BookingTable { get; set; }
+
+
     }
 }
