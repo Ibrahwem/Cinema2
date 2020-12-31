@@ -15,6 +15,8 @@ namespace MyCinema
     
     public partial class Database1Entities : DbContext
     {
+        internal object cart;
+
         public Database1Entities()
             : base("name=Database1Entities")
         {

@@ -9,6 +9,7 @@
 
 namespace MyCinema
 {
+    using MyCinema.Models;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -45,5 +46,7 @@ namespace MyCinema
         [Required(ErrorMessage = "This field is required.")]
         [Display(Name = "age limitation")]
         public string Age_limit { get; set; }
+        public virtual ICollection<BookingTable> booking { get; set; }
+
     }
 }

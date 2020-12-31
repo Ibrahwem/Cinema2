@@ -6,11 +6,15 @@ using System.Web.Mvc;
 using System.Data.SqlClient;
 using MyCinema.Models;
 
+
 namespace MyCinema.Controllers
 {
     public class accountController : Controller
     {
+
+        
         readonly SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database1.mdf;Integrated Security=True");
+       
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -101,7 +105,57 @@ namespace MyCinema.Controllers
             }
         }
         
+        public ActionResult Booking(int id)
+        {
+            Database1Entities dbe = new Database1Entities();
+            var item = dbe.Movies.Where(a => a.Id == id).FirstOrDefault();
+            BookSeat vm = new BookSeat();
+            vm.Id = id;
+            vm.movieName = item.movie_name;
+            vm.moviedate = item.movie_date;
+            vm.movietime = item.movie_time;
+            return View(vm);
+        }
+        
+        [HttpPost]
+        public ActionResult AddBooking(BookSeat vm)
+        {
 
+            string seatno = vm.seatno;
+            string moviename = vm.movieName;
+            string moviedate = vm.moviedate;
+            string movietime = vm.movietime;
+            if (checkSeat(moviename,moviedate,movietime,seatno))
+            {
+                string dat = "Insert into [BookSeat](movieName,moviedate,movietime,seatno) Values('" + moviename+ "','" + moviedate+ "','" + movietime + "','" + seatno + "')";
+                SqlCommand comm = new SqlCommand(dat, con);
+                con.Open();
+                comm.ExecuteNonQuery();
+                con.Close();
+                ViewBag.DuplicateMessage = "OK";
+                
+
+            }
+            else
+            {
+                ViewBag.DuplicateMessage = "Seat already taken please choose another one ";
+            }
+            return View("Booking");
+        }
+        private bool checkSeat(string moviename, string moviedate, string movietime, string seatno)
+        {
+            string check = " select count(*) from [BookSeat] where movieName ='" + moviename + "' and moviedate='" + moviedate + "' and movietime='" + movietime + "' and seatno='" + seatno+"'";
+            SqlCommand com = new SqlCommand(check, con);
+            con.Open();
+            int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
+            con.Close();
+            if (temp != 1)
+            {
+                return true;
+            }
+            else 
+                return false;
+            }
 
 
     }

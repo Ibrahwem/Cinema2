@@ -151,6 +151,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\BookingTable.cs" />
+    <Compile Include="Models\BookNowViewModel.cs" />
+    <Compile Include="Models\BookSeat.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\hall.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\User.cs" />
@@ -221,6 +225,8 @@
     <Content Include="Views\account\UsersMoviesList.cshtml" />
     <Content Include="Views\account\AdminMoviesList.cshtml" />
     <Content Include="Views\account\Edit.cshtml" />
+    <Content Include="Views\account\BuyTicket.cshtml" />
+    <Content Include="Views\account\Booking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />
