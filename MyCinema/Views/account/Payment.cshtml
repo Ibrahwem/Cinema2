@@ -1,0 +1,109 @@
+﻿@model MyCinema.Models.Payment
+
+
+@using (Html.BeginForm("PaymentDone", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Payment</h4>
+    <br />
+    <br />
+    <div>
+        <strong>
+            @TempData["Sucess"]
+        </strong>
+    </div>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Number, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div>
+        <div>
+            <strong>Select the credit preiod</strong>
+           <strong> Month  </strong>
+            @Html.DropDownList("Month", new List<SelectListItem>
+       { new SelectListItem { Text="01",Value="01"},
+         new SelectListItem { Text="02",Value="02"},
+         new SelectListItem { Text="03",Value="03"},
+         new SelectListItem { Text="04",Value="04"},
+         new SelectListItem { Text="05",Value="05"},
+         new SelectListItem { Text="06",Value="06"},
+         new SelectListItem { Text="07",Value="07"},
+         new SelectListItem { Text="08",Value="08"},
+         new SelectListItem { Text="09",Value="09"},
+         new SelectListItem { Text="10",Value="10"},
+         new SelectListItem { Text="11",Value="11"},
+         new SelectListItem { Text="12",Value="12"},
+
+       }
+           , "Month")
+
+            <strong>Year   </strong>@Html.DropDownList("Year", new List<SelectListItem>
+{ new SelectListItem { Text="2021",Value="2021"},
+new SelectListItem { Text="2022",Value="2022"},
+new SelectListItem { Text="2023",Value="2023"},
+new SelectListItem { Text="2024",Value="2024"},
+new SelectListItem { Text="2025",Value="2025"},
+new SelectListItem { Text="2026",Value="2026"},
+new SelectListItem { Text="2027",Value="2027"},
+new SelectListItem { Text="2028",Value="2028"},
+new SelectListItem { Text="2029",Value="2029"},
+new SelectListItem { Text="2030",Value="2030"},
+new SelectListItem { Text="2031",Value="2031"},
+new SelectListItem { Text="2032",Value="2032"},
+
+}
+, "Year")
+        </div>
+
+    </div>
+
+    <br />
+    
+
+    @* <div class="form-group">
+            @Html.LabelFor(model => model.tokef, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tokef, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tokef, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    *@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cvv, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cvv, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cvv, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
