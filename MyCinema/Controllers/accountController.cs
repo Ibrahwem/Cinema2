@@ -113,7 +113,10 @@ namespace MyCinema.Controllers
             vm.movieName = item.movie_name;
             vm.moviedate = item.movie_date;
             vm.movietime = item.movie_time;
-            TempData["choosen"] = "Enter [ " + id + " ] to see the choosen seaets";
+            vm.Amount = item.price;
+            TempData["Amount"] =vm.Amount+ "  shekels will be deducted from your card";
+            TempData["Price"] = "         Movie price = " + vm.Amount;
+            TempData["choosen"] = " Enter [ " + id + " ] to see the choosen seaets";
             return View(vm);
         }
         
@@ -168,6 +171,7 @@ namespace MyCinema.Controllers
         public ActionResult Payment()
         {
             TempData["Sucess"] = "You booked a seat , Please enter payment details ";
+            
             return View();
         }
         [HttpPost]

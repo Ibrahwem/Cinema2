@@ -21,5 +21,7 @@ namespace MyCinema.Models
         public string seatno { get; set; }
         public string Full_Name { get; set; }
         public string movieId { get; set; }
+        public string Amount { get; set; }
+
     }
 }
