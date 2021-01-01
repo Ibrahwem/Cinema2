@@ -113,6 +113,7 @@ namespace MyCinema.Controllers
             vm.movieName = item.movie_name;
             vm.moviedate = item.movie_date;
             vm.movietime = item.movie_time;
+            TempData["choosen"] = "Enter [ " + id + " ] to see the choosen seaets";
             return View(vm);
         }
         

@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<MyCinema.Models.BookSeat>
-<h2>Enter Movie Id to see the booked seats [you can know the movie Id the booking page]</h2>
+@*<h2>Enter Movie Id to see the booked seats [you can know the movie Id the booking page]</h2>
+*@
+<h2>@TempData["choosen"]</h2>
 
 
 @using (Html.BeginForm("ChoosenSeats", "Account", FormMethod.Get))
