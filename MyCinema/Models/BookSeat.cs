@@ -11,17 +11,35 @@ namespace MyCinema.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class BookSeat
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+
         public string movieName { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+
         public string moviedate { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+
         public string movietime { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+
         public string seatno { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+
         public string Full_Name { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+
+
         public string movieId { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+
         public string Amount { get; set; }
+        [Display(Name = "Movie Hall")]
+        public string MyHall { get; set; }
 
     }
 }
