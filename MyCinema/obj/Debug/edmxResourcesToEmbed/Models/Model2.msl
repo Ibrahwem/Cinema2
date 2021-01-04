@@ -4,6 +4,7 @@
     <EntitySetMapping Name="BookSeats">
       <EntityTypeMapping TypeName="Database1Model1.BookSeat">
         <MappingFragment StoreEntitySet="BookSeat">
+          <ScalarProperty Name="MyHall" ColumnName="MyHall" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="movieName" ColumnName="movieName" />
           <ScalarProperty Name="moviedate" ColumnName="moviedate" />

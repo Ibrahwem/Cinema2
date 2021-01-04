@@ -8,9 +8,10 @@
     <Property Name="movieName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="moviedate" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="movietime" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="seatno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="seatno" Type="int" Nullable="false" />
     <Property Name="Full_Name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="movieId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MyHall" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityContainer Name="Database1Model1StoreContainer">
     <EntitySet Name="BookSeat" EntityType="Self.BookSeat" Schema="dbo" store:Type="Tables" />

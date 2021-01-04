@@ -27,7 +27,7 @@ namespace MyCinema.Models
         public string movietime { get; set; }
         [Required(ErrorMessage = "This field is required.")]
 
-        public string seatno { get; set; }
+        public int seatno { get; set; }
         [Required(ErrorMessage = "This field is required.")]
 
         public string Full_Name { get; set; }
@@ -40,6 +40,5 @@ namespace MyCinema.Models
         public double Amount { get; set; }
         [Display(Name = "Movie Hall")]
         public string MyHall { get; set; }
-
     }
 }

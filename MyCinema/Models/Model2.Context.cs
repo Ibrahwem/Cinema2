@@ -26,7 +26,5 @@ namespace MyCinema.Models
         }
     
         public virtual DbSet<BookSeat> BookSeats { get; set; }
-
-        public System.Data.Entity.DbSet<MyCinema.Movy> Movies { get; set; }
     }
 }
