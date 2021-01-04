@@ -38,7 +38,7 @@
           <Property Name="movie_time" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="movie_pic" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="movie_hall" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="price" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="price" Nullable="false" Type="Double" />
           <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Age_limit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>

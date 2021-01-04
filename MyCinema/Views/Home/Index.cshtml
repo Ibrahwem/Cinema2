@@ -1,82 +1,152 @@
-﻿@model IEnumerable<MyCinema.Movy>
-
+﻿
+@model IEnumerable<MyCinema.Movy>
 <h2>Wekcome To cinema booking online website</h2>
 <p>
     @Html.ActionLink("Register", "AddOrEdit", "User") ---- @Html.ActionLink("Login", "Login", "Account")
 </p>
+@*
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.DropDownList("Categories", new List<SelectListItem>
+    {
+    new SelectListItem { Text = "All", Value = "All" },
+    new SelectListItem { Text = "Action", Value = "Action" },
+    new SelectListItem { Text = "Drama", Value = "Drama" },
+    new SelectListItem { Text = "Comedy", Value = "Comedy" },
+    new SelectListItem { Text = "Horror", Value = "Horror" },
+    new SelectListItem { Text = "Romance", Value = "Romance" },
+    new SelectListItem { Text = "Thriller", Value = "Thriller" }
+    }, new { @class = "form-control" })
+        <input type="submit" value="submit" />
+    }*@
+ 
+<form name="ategories" id="ategories" method="post">
+    <select class="form-control" name="Categories" id="Categories">
+        <option value="All">All</option>
+        @if (ViewBag.Cat == "Action")
+        {
+            <option value="Action" selected>Action</option>
+        }
+        else
+        {
+            <option value="Action">Action</option>
+        }
+        @if (ViewBag.Cat == "Drama")
+        {
+            <option value="Drama" selected>Drama</option>
+        }
+        else
+        {
+            <option value="Drama">Drama</option>
+        }
+        @if (ViewBag.Cat == "Comedy")
+        {
+            <option value="Comedy" selected>Comedy</option>
+        }
+        else
+        {
+            <option value="Comedy">Comedy</option>
+        }
+        @if (ViewBag.Cat == "Horror")
+        {
+            <option value="Horror" selected>Horror</option>
+        }
+        else
+        {
+            <option value="Horror">Horror</option>
+        }
+        @if (ViewBag.Cat == "Romance")
+        {
+    <option value="Romance" selected>Romance</option>
+        }
+        else
+        {
+    <option value="Romance">Romance</option>
+        }
+        
+    </select>
+<input type="submit" value="Filter"></input>
+    </form>
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.movie_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age_limit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.movie_dis)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.movie_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.movie_time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.movie_hall)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.movie_pic)
-        </th>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.movie_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age_limit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movie_dis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movie_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movie_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movie_hall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movie_pic)
+            </th>
 
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.movie_name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Category)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Age_limit)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.movie_dis)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.movie_date)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.movie_time)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.movie_hall)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.price)
-    </td>
-
-    <td>
-        <img src="@Url.Content("~/Images/"+item.movie_pic)" height="100" width="100" />
-    </td>
-    <td>
-        @using (Html.BeginForm("Booking", "Account", new { id = item.Id }))
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
         {
-            <input type="submit" value="Booking" class="btn btn-default" onclick="return confirm('Are you shure you want to Buy ticket to watch @item.movie_name');" />
+
+            if (ViewBag.Cat == null || (ViewBag.Cat).ToLower() == "all" || (ViewBag.Cat).ToLower() == item.Category.ToLower())
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age_limit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_dis)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_hall)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+
+                    <td>
+                        <img src="@Url.Content("~/ Images / " + item.movie_pic)" height="100" width="100" />
+
+                    </td>
+
+                    <td>
+                        @using (Html.BeginForm("Booking", "Account", new { id = item.Id }))
+                        {
+                            <input type="submit" value="Booking" class="btn btn-default" onclick="return confirm('Are you sure you want to Buy ticket to watch @item.movie_name');" />
+                        }
+                        @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    </td>
+                </tr>
+            }
         }
-        @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-    </td>
-</tr>
-}
 
 </table>

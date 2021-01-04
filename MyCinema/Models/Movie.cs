@@ -44,7 +44,7 @@ namespace MyCinema.Models
 
         [Required(ErrorMessage = "This field is required.")]
         [Display(Name = "Price")]
-        public string price { get; set; }
+        public float price { get; set; }
         public virtual ICollection<BookingTable> booking { get; set; }
 
 
