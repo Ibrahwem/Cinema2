@@ -15,7 +15,7 @@
           <Property Name="movie_date" Type="varchar(max)" Nullable="false" />
           <Property Name="movie_time" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="movie_hall" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="price" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
           <Property Name="movie_pic" Type="varchar(max)" Nullable="false" />
           <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Age_limit" Type="varchar" MaxLength="50" Nullable="false" />

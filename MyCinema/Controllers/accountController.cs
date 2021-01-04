@@ -114,7 +114,7 @@ namespace MyCinema.Controllers
             vm.moviedate = item.movie_date;
             vm.movietime = item.movie_time;
             vm.MyHall = item.movie_hall;
-            //vm.Amount = item.price;
+            vm.Amount = item.price;
             string seats_num="0";
             if (vm.MyHall == "A2" || vm.MyHall == "A1")
                 seats_num = "50";

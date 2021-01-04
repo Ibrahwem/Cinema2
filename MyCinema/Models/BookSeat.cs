@@ -37,7 +37,7 @@ namespace MyCinema.Models
         public string movieId { get; set; }
         [Required(ErrorMessage = "This field is required.")]
 
-        public string Amount { get; set; }
+        public double Amount { get; set; }
         [Display(Name = "Movie Hall")]
         public string MyHall { get; set; }
 
