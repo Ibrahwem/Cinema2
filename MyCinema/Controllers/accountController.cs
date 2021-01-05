@@ -38,9 +38,10 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult Edit(Movy m)
         {
+            
             if (m.movie_hall == "A1" || m.movie_hall == "A2" || m.movie_hall == "A3" || m.movie_hall == "B1" || m.movie_hall == "B2")
              {
-                string dat = "update [Movies] set movie_date='" + m.movie_date+ "',movie_time='"+m.movie_time+ "',movie_hall= '" + m.movie_hall + "',price= '" + m.price + "' where Id='" + m.Id + "'";
+                string dat = "update [Movies] set movie_date='" + m.movie_date+ "',movie_time='"+m.movie_time+ "',movie_hall= '" + m.movie_hall + "',price= '" + m.price*((100-m.Discount)/100) + "',Discount= '" + m.Discount + "' where Id='" + m.Id + "'";
                 SqlCommand comm = new SqlCommand(dat, con);
                 con.Open();
                 comm.ExecuteNonQuery();

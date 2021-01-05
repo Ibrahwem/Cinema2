@@ -23,6 +23,7 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult AddMovie(HttpPostedFileBase file,Movie m)
         {
+            m.Discount = 0;
             if (m.hall == "A1" || m.hall == "A2" || m.hall == "A3" || m.hall == "B1" || m.hall == "B2")
             {
                 string check = " select count(*) from [Movies] where movie_date ='" + m.Date + "'and movie_time='" + m.Time + "' and movie_hall='" + m.hall + "'";
@@ -41,7 +42,7 @@ namespace MyCinema.Controllers
                             {
                                 path = Path.Combine(Server.MapPath("~/Images"), file.FileName);
                                 file.SaveAs(path);
-                                string dat = "Insert into [Movies](movie_name,movie_dis,movie_date,movie_time,movie_hall,price,movie_pic,Category,Age_limit) Values('" + m.Name + "','" + m.Description + "','" + m.Date + "','" + m.Time + "','" + m.hall + "','" + m.price + "','" + file.FileName + "','" + m.Category + "','" + m.age + "')";
+                                string dat = "Insert into [Movies](movie_name,movie_dis,movie_date,movie_time,movie_hall,price,movie_pic,Category,Age_limit,Discount) Values('" + m.Name + "','" + m.Description + "','" + m.Date + "','" + m.Time + "','" + m.hall + "','" + m.price + "','" + file.FileName + "','" + m.Category + "','" + m.age + "','"+m.Discount+"')";
                                 SqlCommand comm = new SqlCommand(dat, con);
                                 con.Open();
                                 comm.ExecuteNonQuery();

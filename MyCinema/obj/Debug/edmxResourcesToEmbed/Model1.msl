@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Movies">
       <EntityTypeMapping TypeName="Database1Model.Movy">
         <MappingFragment StoreEntitySet="Movies">
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
           <ScalarProperty Name="Age_limit" ColumnName="Age_limit" />
           <ScalarProperty Name="Category" ColumnName="Category" />
           <ScalarProperty Name="price" ColumnName="price" />

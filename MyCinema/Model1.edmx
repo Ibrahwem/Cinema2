@@ -19,6 +19,7 @@
           <Property Name="movie_pic" Type="varchar(max)" Nullable="false" />
           <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Age_limit" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
         </EntityType>
         <EntityContainer Name="Database1ModelStoreContainer">
           <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
@@ -41,6 +42,7 @@
           <Property Name="price" Nullable="false" Type="Double" />
           <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Age_limit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
         </EntityType>
         <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Movies" EntityType="Self.Movy" />
@@ -54,6 +56,7 @@
           <EntitySetMapping Name="Movies">
             <EntityTypeMapping TypeName="Database1Model.Movy">
               <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Age_limit" ColumnName="Age_limit" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="price" ColumnName="price" />

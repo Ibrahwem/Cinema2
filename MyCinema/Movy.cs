@@ -11,18 +11,28 @@ namespace MyCinema
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Movy
     {
         public int Id { get; set; }
         public string movie_name { get; set; }
         public string movie_dis { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Movie's Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:Day/Mont/year}", ApplyFormatInEditMode = true)]
         public string movie_date { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
+        [Display(Name = "Movie's Time")]
         public string movie_time { get; set; }
         public string movie_pic { get; set; }
         public string movie_hall { get; set; }
         public double price { get; set; }
         public string Category { get; set; }
         public string Age_limit { get; set; }
+        public double Discount { get; set; }
     }
 }

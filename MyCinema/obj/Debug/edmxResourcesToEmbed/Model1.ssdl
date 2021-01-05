@@ -14,6 +14,7 @@
     <Property Name="movie_pic" Type="varchar(max)" Nullable="false" />
     <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Age_limit" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Discount" Type="float" Nullable="false" />
   </EntityType>
   <EntityContainer Name="Database1ModelStoreContainer">
     <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />

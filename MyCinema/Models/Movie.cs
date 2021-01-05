@@ -45,6 +45,9 @@ namespace MyCinema.Models
         [Required(ErrorMessage = "This field is required.")]
         [Display(Name = "Price")]
         public float price { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Discout")]
+        public float Discount { get; set; }
         public virtual ICollection<BookingTable> booking { get; set; }
 
 
