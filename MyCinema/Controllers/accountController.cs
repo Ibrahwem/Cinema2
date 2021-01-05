@@ -127,8 +127,8 @@ namespace MyCinema.Controllers
                 seats_num = "30";
 
             TempData["Hall"] = "The hall that the movie will played in is [ " + vm.MyHall + " ] witch contains seats from 1 to " + seats_num ;
-            TempData["Amount"] =vm.Amount+ "  shekels will be deducted from your card";
-            TempData["Price"] = "         Movie price = " + vm.Amount;
+          //  TempData["Amount"] =vm.Amount+ "  shekels will be deducted from your card";
+           // TempData["Price"] = "         Movie price = " + vm.Amount;
             TempData["choosen"] = " Enter [ " + id + " ] to see the choosen seaets";
             TempData["Seatno"] = "1 to " + seats_num;
             return View(vm);
@@ -209,7 +209,7 @@ namespace MyCinema.Controllers
 
         public ActionResult Payment()
         {
-            TempData["Sucess"] = "You booked a seat , Please enter payment details ";
+            TempData["Sucess"] = "Please enter payment details ";
             
             return View();
         }

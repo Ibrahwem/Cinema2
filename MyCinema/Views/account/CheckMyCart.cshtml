@@ -52,14 +52,15 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
 
 </table>
-
+<div>
+    <strong>Total Price is : @Model.Sum(i => i.Amount)</strong> 
+</div>
 @using (Html.BeginForm("Payment", "Account"))
 {
     <input type="submit" value="Payment" class="btn btn-default" );" />
