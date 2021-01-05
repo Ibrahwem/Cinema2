@@ -163,7 +163,13 @@ namespace MyCinema.Controllers
                     con.Open();
                     comm.ExecuteNonQuery();
                     con.Close();
-                    return View("Payment");
+                    string datt = "Insert into [cart](Amount,date,time,seatno,UserId,movieId) Values('" + vm.Amount + "','" + moviedate + "','" + movietime + "','" + seatno + "','" + vm.Full_Name + "','" + movieId + "')";
+                    SqlCommand commm = new SqlCommand(datt, con);
+                    con.Open();
+                    commm.ExecuteNonQuery();
+                    con.Close();
+                    TempData["GoodSeatBook"] = "Successful Book! Check your Cart";
+                    return View("Booking");
                 }
                 else
                 {
@@ -211,6 +217,11 @@ namespace MyCinema.Controllers
         public ActionResult PaymentDone()
         {
             return View();
+        }
+        public ActionResult CheckMyCart(string searching)
+        {
+            Database1Entities dbe = new Database1Entities();
+            return View(dbe.carts.Where(x => x.UserId.Contains(searching)).ToList());
         }
     }
 }

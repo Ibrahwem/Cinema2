@@ -5,6 +5,26 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="seatno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MovieId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaxPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
         <EntityType Name="Movies">
           <Key>
             <PropertyRef Name="Id" />
@@ -22,6 +42,8 @@
           <Property Name="Discount" Type="float" Nullable="false" />
         </EntityType>
         <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaxPrice" EntityType="Self.MaxPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -46,7 +68,29 @@
         </EntityType>
         <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Movies" EntityType="Self.Movy" />
+          <EntitySet Name="MaxPrices" EntityType="Database1Model.MaxPrice" />
+          <EntitySet Name="carts" EntityType="Database1Model.cart" />
         </EntityContainer>
+        <EntityType Name="MaxPrice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seatno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -67,6 +111,28 @@
                 <ScalarProperty Name="movie_date" ColumnName="movie_date" />
                 <ScalarProperty Name="movie_time" ColumnName="movie_time" />
                 <ScalarProperty Name="movie_pic" ColumnName="movie_pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaxPrices">
+            <EntityTypeMapping TypeName="Database1Model.MaxPrice">
+              <MappingFragment StoreEntitySet="MaxPrice">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="Database1Model.cart">
+              <MappingFragment StoreEntitySet="cart">
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="seatno" ColumnName="seatno" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

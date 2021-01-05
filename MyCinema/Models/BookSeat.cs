@@ -12,33 +12,36 @@ namespace MyCinema.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class BookSeat
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-
+        [HiddenInput(DisplayValue = false)]
         public string movieName { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-
+        [HiddenInput(DisplayValue = false)]
         public string moviedate { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-
+        [HiddenInput(DisplayValue = false)]
         public string movietime { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-
+        
         public int seatno { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-
+        [Display(Name = "Person_Identity")]
+        [StringLength(9, MinimumLength = 9)]
         public string Full_Name { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-
+        [HiddenInput(DisplayValue = false)]
 
         public string movieId { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-
+        [HiddenInput(DisplayValue = false)]
         public double Amount { get; set; }
         [Display(Name = "Movie Hall")]
+        [HiddenInput(DisplayValue = false)]
         public string MyHall { get; set; }
     }
 }

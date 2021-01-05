@@ -128,12 +128,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="cart.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\accountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MaxPrice.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -265,6 +271,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\account\Payment.cshtml" />
     <Content Include="Views\account\PaymentDone.cshtml" />
+    <Content Include="Views\account\CheckMyCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />

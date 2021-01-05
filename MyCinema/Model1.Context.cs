@@ -26,5 +26,7 @@ namespace MyCinema
         }
     
         public virtual DbSet<Movy> Movies { get; set; }
+        public virtual DbSet<MaxPrice> MaxPrices { get; set; }
+        public virtual DbSet<cart> carts { get; set; }
     }
 }

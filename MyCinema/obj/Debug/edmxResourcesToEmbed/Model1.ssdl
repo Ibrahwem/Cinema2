@@ -1,5 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="float" Nullable="false" />
+    <Property Name="date" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="time" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="seatno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MovieId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MaxPrice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+  </EntityType>
   <EntityType Name="Movies">
     <Key>
       <PropertyRef Name="Id" />
@@ -17,6 +37,8 @@
     <Property Name="Discount" Type="float" Nullable="false" />
   </EntityType>
   <EntityContainer Name="Database1ModelStoreContainer">
+    <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MaxPrice" EntityType="Self.MaxPrice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
