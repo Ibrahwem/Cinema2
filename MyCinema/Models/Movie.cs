@@ -30,8 +30,10 @@ namespace MyCinema.Models
         [Required(ErrorMessage = "This field is required.")]
         [Display(Name = "Movie's Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString ="{0:Day/Mont/year}",ApplyFormatInEditMode =true)]
-        public string Date { get; set; }
+      // [DisplayFormat(DataFormatString ="{0:Day/Mont/year}",ApplyFormatInEditMode =true)]
+         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}" ,ApplyFormatInEditMode = true )]
+
+        public DateTime Date { get; set; }
         [Required(ErrorMessage = "This field is required.")]
         [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]

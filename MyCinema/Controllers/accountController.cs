@@ -140,7 +140,7 @@ namespace MyCinema.Controllers
 
             int seatno = vm.seatno;
             string moviename = vm.movieName;
-            string moviedate = vm.moviedate;
+            DateTime moviedate = vm.moviedate;
             string movietime = vm.movietime;
             string movieId = vm.movieId;
             int seats_num = -1;

@@ -6,7 +6,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Amount" Type="float" Nullable="false" />
-    <Property Name="date" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
     <Property Name="time" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="seatno" Type="varchar" MaxLength="50" Nullable="false" />
@@ -27,7 +27,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="movie_name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="movie_dis" Type="varchar(max)" Nullable="false" />
-    <Property Name="movie_date" Type="varchar(max)" Nullable="false" />
+    <Property Name="movie_date" Type="date" Nullable="false" />
     <Property Name="movie_time" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="movie_hall" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="price" Type="float" Nullable="false" />

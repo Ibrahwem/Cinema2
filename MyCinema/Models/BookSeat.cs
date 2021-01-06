@@ -22,7 +22,7 @@ namespace MyCinema.Models
         public string movieName { get; set; }
         [Required(ErrorMessage = "This field is required.")]
         [HiddenInput(DisplayValue = false)]
-        public string moviedate { get; set; }
+        public System.DateTime moviedate { get; set; }
         [Required(ErrorMessage = "This field is required.")]
         [HiddenInput(DisplayValue = false)]
         public string movietime { get; set; }

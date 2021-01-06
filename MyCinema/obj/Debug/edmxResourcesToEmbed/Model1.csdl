@@ -7,7 +7,7 @@
     <Property Name="Id" Nullable="false" Type="Int32" />
     <Property Name="movie_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
     <Property Name="movie_dis" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
-    <Property Name="movie_date" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+    <Property Name="movie_date" Nullable="false" Type="DateTime" Precision="0" />
     <Property Name="movie_time" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
     <Property Name="movie_pic" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
     <Property Name="movie_hall" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
@@ -35,8 +35,8 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Amount" Type="Double" Nullable="false" />
-    <Property Name="date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="time" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="seatno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="MovieId" Type="Int32" Nullable="false" />

@@ -11,13 +11,16 @@ namespace MyCinema
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Movy
     {
         public int Id { get; set; }
         public string movie_name { get; set; }
         public string movie_dis { get; set; }
-        public string movie_date { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+
+        public System.DateTime movie_date { get; set; }
         public string movie_time { get; set; }
         public string movie_pic { get; set; }
         public string movie_hall { get; set; }

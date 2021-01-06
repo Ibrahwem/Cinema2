@@ -16,7 +16,7 @@ namespace MyCinema
     {
         public int Id { get; set; }
         public double Amount { get; set; }
-        public string date { get; set; }
+        public System.DateTime date { get; set; }
         public string time { get; set; }
         public string UserId { get; set; }
         public string seatno { get; set; }

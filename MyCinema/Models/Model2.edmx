@@ -11,7 +11,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="movieName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="moviedate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="moviedate" Type="date" Nullable="false" />
           <Property Name="movietime" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="seatno" Type="int" Nullable="false" />
           <Property Name="Full_Name" Type="varchar" MaxLength="50" Nullable="false" />
@@ -31,7 +31,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="movieName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="moviedate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="moviedate" Type="DateTime" Nullable="false" />
           <Property Name="movietime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="seatno" Type="Int32" Nullable="false" />
           <Property Name="Full_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
