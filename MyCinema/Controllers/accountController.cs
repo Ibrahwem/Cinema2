@@ -107,6 +107,7 @@ namespace MyCinema.Controllers
         
         public ActionResult Booking(int id)
         {
+            Database1Entities1 db = new Database1Entities1();
             Database1Entities dbe = new Database1Entities();
             var item = dbe.Movies.Where(a => a.Id == id).FirstOrDefault();
             BookSeat vm = new BookSeat();
@@ -126,12 +127,13 @@ namespace MyCinema.Controllers
                 if (vm.MyHall == "B2")
                 seats_num = "30";
 
-            TempData["Hall"] = "The hall that the movie will played in is [ " + vm.MyHall + " ] witch contains seats from 1 to " + seats_num ;
-          //  TempData["Amount"] =vm.Amount+ "  shekels will be deducted from your card";
-           // TempData["Price"] = "         Movie price = " + vm.Amount;
-            TempData["choosen"] = " Enter [ " + id + " ] to see the choosen seaets";
-            TempData["Seatno"] = "1 to " + seats_num;
-            return View(vm);
+            Session["Hall"] = "The hall that the movie will played in is [ " + vm.MyHall + " ] witch contains seats from 1 to " + seats_num ;
+            //  TempData["Amount"] =vm.Amount+ "  shekels will be deducted from your card";
+            // TempData["Price"] = "         Movie price = " + vm.Amount;
+            Session["choosen"] = " Enter [ " + id + " ] to see the choosen seaets";
+            Session["Seatno"] = "1 to " + seats_num;
+            var tuple1 =new Tuple<BookSeat,List<BookSeat>> (vm, db.BookSeats.Where(x => x.movieId.Contains(id.ToString())).ToList());
+            return View(tuple1);
         }
         
         [HttpPost]
@@ -145,7 +147,9 @@ namespace MyCinema.Controllers
             string movieId = vm.movieId;
             int seats_num = -1;
             string seats_num2 = "0";
-            
+            Database1Entities1 db = new Database1Entities1();
+            var tuple1 = new Tuple<BookSeat, List<BookSeat>>(vm, db.BookSeats.Where(x => vm.movieId.Contains(movieId.ToString())).ToList());
+
             if (vm.MyHall == "A2" || vm.MyHall == "A1")
             { seats_num = 50; seats_num2 = "50"; }
             else

@@ -1,11 +1,16 @@
-﻿@model MyCinema.Models.BookSeat
+﻿@using MyCinema.Models;
+@model Tuple<BookSeat,List<BookSeat>>
 
 @{
     ViewBag.Title = "Booking";
 }
 
 <h2>Booking</h2>
-
+@if (Model != null)
+{
+    Session["list1"] = Model.Item1;
+    Session["list2"] = Model.Item2;
+}
 
 @using (Html.BeginForm("AddBooking", "Account", FormMethod.Post))
 {
@@ -16,68 +21,69 @@
     <br />
     <div>
         <strong>
-            @TempData["Hall"]
-            @TempData["GoodSeatBook"]
+            @Session["Hall"]
+            @Session["GoodSeatBook"]
         </strong>
     </div>
+     
+        
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.Full_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => ((BookSeat) Session["list1"]).Full_Name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Full_Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Full_Name, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => ((BookSeat) Session["list1"]).Full_Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => ((BookSeat) Session["list1"]).Full_Name, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.seatno, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Item1.seatno, htmlAttributes: new { @class = "control-label col-md-2" })
 
         <div class="col-md-10">
-            @Html.EditorFor(model => model.seatno, new { htmlAttributes = new { @class = "form-control" } })
-            <strong>@TempData["Seatno"]</strong>
-            @Html.ValidationMessageFor(model => model.seatno, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => ((BookSeat) Session["list1"]).seatno, new { htmlAttributes = new { @class = "form-control" } })
+            <strong>@Session["Seatno"]</strong>
+            @Html.ValidationMessageFor(model => ((BookSeat) Session["list1"]).seatno, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-10">
-            @Html.EditorFor(model => model.movieId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.movieId, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => ((BookSeat) Session["list1"]).movieId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => ((BookSeat) Session["list1"]).movieId, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MyHall, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MyHall, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => ((BookSeat) Session["list1"]).MyHall, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => ((BookSeat) Session["list1"]).MyHall, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-10">
-            @Html.EditorFor(model => model.movieName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.movieName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.moviedate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.moviedate, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => ((BookSeat) Session["list1"]).movieName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => ((BookSeat) Session["list1"]).movieName, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-10">
-            @Html.EditorFor(model => model.movietime, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.movietime, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => ((BookSeat) Session["list1"]).moviedate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => ((BookSeat) Session["list1"]).moviedate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => ((BookSeat) Session["list1"]).movietime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => ((BookSeat) Session["list1"]).movietime, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => ((BookSeat) Session["list1"]).Amount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => ((BookSeat) Session["list1"]).Amount, "", new { @class = "text-danger" })
         </div>
     </div>
-
 
 
     <div class="form-group">
@@ -92,19 +98,42 @@
         </div>
     </div>
     <div>
-        @TempData["Sucess"]
+        @Session["Sucess"]
     </div>
 </div>
 
 }
-<div>
-    <br />
 
-    @using (Html.BeginForm("ChoosenSeats", "Account"))
-    {
-        <input type="submit" value="Check Seats" class="btn btn-default" );" />
-    }
-</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Booked Seats</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        @if (((List<BookSeat>) Session["list2"]).Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    no seats booked.
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in ((List<BookSeat>) Session["list2"]))
+            {
+                <tr>
+                    <td>@item.seatno</td>
+                </tr>
+            }
+        }
+        
+    </tbody>
+</table>
+
 @using (Html.BeginForm("CheckMyCart", "Account"))
 {
     <input type="submit" value="Check My Cart" class="btn btn-default" );" />
