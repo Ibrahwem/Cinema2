@@ -54,7 +54,8 @@ namespace MyCinema.Controllers
                                 }
                             }
                         }
-                        return View();
+                        return RedirectToAction("AdminMoviesList", "Account");
+                        // return View();
                     }
                     else
                     {

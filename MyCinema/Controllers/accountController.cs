@@ -94,9 +94,9 @@ namespace MyCinema.Controllers
             if (temp == 1)
             {
                if (acc.username == "admin")
-                    return View("AdminPage");
+                    return RedirectToAction("AdminMoviesList", "Account");
                 else
-                    return View("UserPage");
+                    return RedirectToAction("UsersMoviesList", "Account");
             }
             else
             {
