@@ -98,22 +98,7 @@
         {
             <option value="3">Category</option>
         }
-        @*@if (ViewBag.Cat == "Horror")
-        {
-            <option value="Horror" selected>Horror</option>
-        }
-        else
-        {
-            <option value="Horror">Horror</option>
-        }
-        @if (ViewBag.Cat == "Romance")
-        {
-            <option value="Romance" selected>Romance</option>
-        }
-        else
-        {
-            <option value="Romance">Romance</option>
-        }*@
+        
 
     </select>
     <input type="submit" value="Filter"></input>
@@ -179,7 +164,12 @@
                     @Html.DisplayFor(modelItem => item.movie_hall)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.price)
+
+                    @if (item.Discount != 0)
+                    {
+                    <p style="text-decoration-line: line-through; color:#949494">@((item.price).ToString())</p>
+                    }
+                    @((item.price*((100-item.Discount)/100)).ToString())
                 </td>
 
                 <td>

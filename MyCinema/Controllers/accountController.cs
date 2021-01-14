@@ -41,7 +41,7 @@ namespace MyCinema.Controllers
             
             if (m.movie_hall == "A1" || m.movie_hall == "A2" || m.movie_hall == "A3" || m.movie_hall == "B1" || m.movie_hall == "B2")
              {
-                string dat = "update [Movies] set movie_date='" + m.movie_date+ "',movie_time='"+m.movie_time+ "',movie_hall= '" + m.movie_hall + "',price= '" + m.price*((100-m.Discount)/100) + "',Discount= '" + m.Discount + "' where Id='" + m.Id + "'";
+                string dat = "update [Movies] set movie_date='" + m.movie_date+ "',movie_time='"+m.movie_time+ "',movie_hall= '" + m.movie_hall + "',price= '" + m.price + "',Discount= '" + m.Discount + "' where Id='" + m.Id + "'";
                 SqlCommand comm = new SqlCommand(dat, con);
                 con.Open();
                 comm.ExecuteNonQuery();
@@ -71,10 +71,75 @@ namespace MyCinema.Controllers
         {
             return View();
         }
-        public ActionResult UsersMoviesList()
+        public ActionResult UsersMoviesList(FormCollection form)
         {
+            using (Database1Entities db = new Database1Entities())
+            {
+                foreach (Movy mv in db.Movies.ToList<Movy>())
+                {
+                    /*System.Diagnostics.Debug.WriteLine(DateTime.Now.ToString());
+                    System.Diagnostics.Debug.WriteLine(mv.movie_date.ToString() + " " + mv.movie_time.ToString());*/
+                    DateTime d = mv.movie_date.Date + TimeSpan.Parse(mv.movie_time);
+
+                    int res = DateTime.Compare(d, DateTime.Now);
+                    if (res < 0)
+                    {
+                        db.Movies.Remove(mv);
+                        db.SaveChanges();
+                        Database1Entities1 dbe1 = new Database1Entities1();
+                        /*BookSeat b = (BookSeat)dbe1.BookSeats.Where(x => x.Id == mv.Id);
+                        dbe1.BookSeats.Remove(b);
+                        dbe1.SaveChanges();*/
+                    }
+                }
+            }
+            string cat = form["Categories"];
+            ViewBag.Cat = cat;
             Database1Entities dbe = new Database1Entities();
-            return View(dbe.Movies.ToList());
+
+
+            //form["moviedaytime"]= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
+            if (Session["DT"] != null)
+            {
+                form["moviedaytime"] = ((DateTime)Session["DT"]).ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
+            }
+            string dt = form["moviedaytime"];
+            DateTime datetime;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
+            if (dt != "" && dt != null)
+            {
+                dt = dt.Replace('T', ' ');
+                datetime = Convert.ToDateTime(dt);
+                Session["DT"] = datetime;
+                ViewBag.Date = datetime.Date.ToString();
+                ViewBag.Time = datetime.TimeOfDay.ToString();
+            }
+            string ord = form["order"];
+            var emps = dbe.Movies;
+            if (ord == "1")
+            {
+                var emps1 = from e in dbe.Movies
+                            orderby e.price
+                            select e;
+                return View(emps1.ToList());
+            }
+            if (ord == "2")
+            {
+                var emps1 = from e in dbe.Movies
+                            orderby e.price descending
+                            select e;
+                return View(emps1.ToList());
+            }
+            if (ord == "3")
+            {
+                var emps1 = from e in dbe.Movies
+                            orderby e.Category
+                            select e;
+                return View(emps1.ToList());
+            }
+
+            return View(emps.ToList());
         }
         public ActionResult AdminMoviesList()
         {
