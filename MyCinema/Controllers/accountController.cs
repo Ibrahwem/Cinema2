@@ -241,7 +241,7 @@ namespace MyCinema.Controllers
                     con.Open();
                     commm.ExecuteNonQuery();
                     con.Close();
-                    TempData["GoodSeatBook"] = "Successful Book! Check your Cart";
+                    ViewBag.SuccessMessage = "Successful Book! Check your Cart";
                     return View("Booking");
                 }
                 else
