@@ -21,7 +21,9 @@ namespace MyCinema.Controllers
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
-            return View("AdminPage");
+          //  return View("AdminPage");
+            return RedirectToAction("AdminMoviesList", "Account");
+
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -47,10 +49,12 @@ namespace MyCinema.Controllers
                 comm.ExecuteNonQuery();
                 con.Close();
                 ViewBag.SuccessMessage = "Movie Updated successfully.";
-                 return View("AdminPage");
+                // return View("AdminPage");
+                return RedirectToAction("AdminMoviesList", "Account");
 
-             }
-             else if(m.movie_hall!=null)
+
+            }
+            else if(m.movie_hall!=null)
              {
                  ViewBag.DuplicateMessage = "hall number Should be A1,A2,A3,B1,B2";
                  return View();

@@ -18,15 +18,28 @@ namespace MyCinema
         public int Id { get; set; }
         public string movie_name { get; set; }
         public string movie_dis { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Movie's Date")]
+        [DataType(DataType.Date)]
+        // [DisplayFormat(DataFormatString ="{0:Day/Mont/year}",ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime movie_date { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:H:mm}")]
+        [Display(Name = "Movie's Time")]
         public string movie_time { get; set; }
         public string movie_pic { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Hall [A1,A2,A3,B1,B2]")]
         public string movie_hall { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Price")]
         public double price { get; set; }
         public string Category { get; set; }
         public string Age_limit { get; set; }
+        [Required(ErrorMessage = "This field is required.")]
+        [Display(Name = "Discout")]
         public double Discount { get; set; }
     }
 }
