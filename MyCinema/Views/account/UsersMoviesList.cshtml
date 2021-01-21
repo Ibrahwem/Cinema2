@@ -157,9 +157,9 @@
 
                         @if (item.Discount != 0)
                         {
-                            <p style="text-decoration-line: line-through; color:#949494">@((item.price).ToString())</p>
+                            <p style="text-decoration-line: line-through; color:red">@((item.price).ToString()) &#8362;</p>
                         }
-                        @((item.price * ((100 - item.Discount) / 100)).ToString())
+                        <p style="color:green">@((item.price * ((100 - item.Discount) / 100)).ToString()) &#8362;</p>
                     </td>
 
                     <td>

@@ -257,6 +257,52 @@ namespace MyCinema.Controllers
             }
             
         }
+        [HttpPost]
+        public ActionResult PayNow(BookSeat vm)
+        {
+
+            int seatno = vm.seatno;
+            string moviename = vm.movieName;
+            DateTime moviedate = vm.moviedate;
+            string movietime = vm.movietime;
+            string movieId = vm.movieId;
+            int seats_num = -1;
+            string seats_num2 = "0";
+            Database1Entities1 db = new Database1Entities1();
+            var tuple1 = new Tuple<BookSeat, List<BookSeat>>(vm, db.BookSeats.Where(x => vm.movieId.Contains(movieId.ToString())).ToList());
+
+            if (vm.MyHall == "A2" || vm.MyHall == "A1")
+            { seats_num = 50; seats_num2 = "50"; }
+            else
+                if (vm.MyHall == "A3" || vm.MyHall == "B1")
+            { seats_num = 40; seats_num2 = "40"; }
+            else
+                if (vm.MyHall == "B2")
+            { seats_num = 30; seats_num2 = "30"; }
+            if (seatno >= 1 && seatno <= seats_num)
+            {
+                if (checkSeat(movieId, seatno))
+                {
+                    string dat = "Insert into [BookSeat](movieName,moviedate,movietime,seatno,Full_Name,movieId,MyHall) Values('" + moviename + "','" + moviedate + "','" + movietime + "','" + seatno + "','" + vm.Full_Name + "','" + movieId + "','" + vm.MyHall + "')";
+                    SqlCommand comm = new SqlCommand(dat, con);
+                    con.Open();
+                    comm.ExecuteNonQuery();
+                    con.Close();
+                    return View("Payment");
+                }
+                else
+                {
+                    ViewBag.DuplicateMessage = "Seat already taken please choose another one ";
+                    return View("Booking");
+                }
+            }
+            else
+            {
+                ViewBag.DuplicateMessage = "Seats Number from 1 to " + seats_num2;
+                return View("Booking");
+            }
+
+        }
         private bool checkSeat(string movieId ,int  seatno)
         {
             string check = " select count(*) from [BookSeat] where movieId ='" + movieId+ "' and seatno='" + seatno+"'";
@@ -276,8 +322,9 @@ namespace MyCinema.Controllers
         {
 
             Database1Entities1 db = new Database1Entities1();
-            return View(db.BookSeats.Where(x =>x.movieId.Contains(searching)||searching==null).ToList());
-                
+            return View(db.BookSeats.Where(x => x.movieId.Contains(searching) || searching == null).ToList());
+
+
         }
 
         public ActionResult Payment()
@@ -289,12 +336,12 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult PaymentDone()
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
-        public ActionResult CheckMyCart(string searching)
+        public ActionResult CheckMyCart(BookSeat vm)
         {
             Database1Entities dbe = new Database1Entities();
-            return View(dbe.carts.Where(x => x.UserId.Contains(searching)).ToList());
+            return View(dbe.carts.Where(x => x.UserId.Contains(vm.Full_Name)).ToList());
         }
     }
 }

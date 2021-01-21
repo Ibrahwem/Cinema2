@@ -1,7 +1,7 @@
 ﻿@model MyCinema.Models.Payment
 
 
-@using (Html.BeginForm("PaymentDone", "Account", FormMethod.Post))
+@using (Html.BeginForm("Index", "Home"))
 {
     @Html.AntiForgeryToken()
 
@@ -91,15 +91,11 @@ new SelectListItem { Text="2032",Value="2032"},
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Purchase" style="background-color:green" class="btn btn-primary " onclick=" return confirm('Your purchase is done successfully enter ok redirect to homePage');" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index","Home")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
