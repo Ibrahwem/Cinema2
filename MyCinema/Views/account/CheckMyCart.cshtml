@@ -29,11 +29,13 @@
         </th>
         <th></th>
     </tr>
+    @{
+            string UserId = null; }
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Amount)
+                @Html.DisplayFor(modelItem => item.Amount)&#8362;
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.date)
@@ -51,18 +53,21 @@
                 @Html.DisplayFor(modelItem => item.MovieId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @using (Html.BeginForm("EditSeat", "Account", new { id = UserId }))
+                {
+                    <input type="submit" value="Change Seat" style="background-color:slateblue ; color:black" class="btn btn-primary" );" />
+                }
             </td>
         </tr>
+        UserId = item.UserId;
     }
-
 </table>
 <div>
-    <strong>Total Price is : @Model.Sum(i => i.Amount)</strong> 
+    <strong style="color:green">Total Price is : @Model.Sum(i => i.Amount) &#8362;</strong> 
 </div>
-@using (Html.BeginForm("Payment", "Account"))
-{
-    <input type="submit" value="Payment" class="btn btn-default" );" />
+        @using (Html.BeginForm("Payment", "Account",new { id = UserId }))
+        {
+    <input type="submit" value="Payment" style="background-color:aqua ; color:black" class="btn btn-primary" );" />
 }
+        
 

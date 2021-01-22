@@ -6,15 +6,18 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h2>Payment</h2>
+        <h2 style="color:forestgreen">Payment</h2>
         <br />
         <h3><strong>@TempData["Price"]</strong></h3>
         <br />
         <br />
         <div>
-            <strong>
-                @TempData["Sucess"]
-            </strong>
+            <h3 style="color:blue">
+                <strong>
+                    @TempData["Sucess"]
+
+                </strong>
+            </h3>
         </div>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

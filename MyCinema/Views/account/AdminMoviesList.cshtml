@@ -6,11 +6,12 @@
 
 <h2>AdminMoviesList</h2>
 <div>
-    @Html.ActionLink("LogOut", "Index", "Home", null, new {style = "color: Red" })
+    @Html.ActionLink("LogOut", "Index", "Home", null, new { style = "color: Red" })
+    
 </div>
 <p>
-    @Html.ActionLink("Create New", "AddMovie", "Admin", null, new {style = "color: green" })
-    
+    @Html.ActionLink("Create New", "AddMovie", "Admin", null, new { style = "color: green" })
+
 </p>
 
 <table class="table">
@@ -83,11 +84,11 @@
     <td>
         @using (Html.BeginForm("Edit", "Account", new { id = item.Id }))
         {
-            <input type="submit" value="Edit Movie details" class="btn btn-default" onclick="return confirm('Are you shure you want to Edit @item.movie_name');" />
+            <input type="submit" value="Edit Movie details"  style="background-color:aquamarine; color:black"class="btn btn-default" onclick="return confirm('Are you shure you want to Edit @item.movie_name');" />
         } |
         @using (Html.BeginForm("Delete", "Account", new { id = item.Id }))
         {
-            <input type="submit" value="Delete" class="btn btn-default" onclick="return confirm('Are you shure you want to delete @item.movie_name');" />
+            <input type="submit" value="Delete" style="background-color:crimson; color:white" class="btn btn-default" onclick="return confirm('Are you shure you want to delete @item.movie_name');" />
         }
     </td>
 </tr>

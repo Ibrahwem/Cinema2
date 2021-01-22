@@ -327,11 +327,19 @@ namespace MyCinema.Controllers
 
         }
 
-        public ActionResult Payment()
+        public ActionResult Payment(string id)
         {
             TempData["Sucess"] = "Please enter payment details ";
-            
-            return View();
+            if (id != null)
+            {
+                SqlCommand cmd = new SqlCommand(@"DELETE FROM [dbo].[cart] WHERE [UserId]='" + id + "'", con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return View();
+            }
+            else
+                return View();
         }
         [HttpPost]
         public ActionResult PaymentDone()
