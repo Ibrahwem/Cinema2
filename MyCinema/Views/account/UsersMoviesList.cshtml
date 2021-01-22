@@ -5,7 +5,10 @@
 }
 
 <h2>UsersMoviesList</h2>
-
+@using (Html.BeginForm("ChoosenSeats", "Account"))
+{
+    <input type="submit" value="Booked Movies" style="background-color:aquamarine; color:black" class="btn btn-default" />
+}
 <p>
     @Html.ActionLink("LogOut", "Index", "Home", null, new { style = "color: Red" })
 </p>

@@ -6,13 +6,14 @@
 
 @using (Html.BeginForm("ChoosenSeats", "Account", FormMethod.Get))
 {
+<h3 style="color:mediumblue">Enter Identity</h3>
     @Html.TextBox("searching")
-    <input type="submit" value="search" />
+    <input type="submit" value="search"  />
 }
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Booked Seats</th>
+            <th>Your booked tickets</th>
         </tr>
     </thead>
     <tbody>
@@ -28,8 +29,21 @@
         {
             foreach (var item in Model)
             {
+    <tr>
+        <td style="color:blue"> Movie's name: @item.movieName </td>
+        
+    </tr>
                 <tr>
-                    <td>@item.seatno</td>
+                    <td>Day: @item.moviedate.Date.Day  / @item.moviedate.Month / @item.moviedate.Date.Year</td>
+                </tr>
+                <tr>
+                    <td>Time: @item.movietime</td>
+                </tr>
+                <tr>
+                    <td>Hall: @item.MyHall</td>
+                </tr>
+                <tr>
+                    <td style="color:green">Price: @item.seatno &#8362;</td>
                 </tr>
             }
         }

@@ -322,7 +322,7 @@ namespace MyCinema.Controllers
         {
 
             Database1Entities1 db = new Database1Entities1();
-            return View(db.BookSeats.Where(x => x.movieId.Contains(searching) || searching == null).ToList());
+            return View(db.BookSeats.Where(x => x.Full_Name.Contains(searching)).ToList());
 
 
         }

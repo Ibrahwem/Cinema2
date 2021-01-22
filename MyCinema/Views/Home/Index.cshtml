@@ -4,6 +4,10 @@
 <p>
     @Html.ActionLink("Register", "AddOrEdit", "User") ---- @Html.ActionLink("Login", "Login", "Account")
 </p>
+@using (Html.BeginForm("ChoosenSeats", "Account"))
+{
+    <input type="submit" value="Booked Movies" style="background-color:aquamarine; color:black" class="btn btn-default" />
+}
 @*
     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
     {
@@ -20,7 +24,7 @@
     }, new { @class = "form-control" })
         <input type="submit" value="submit" />
     }*@
- 
+
 <form name="ategories" id="ategories" method="post">
     <select class="form-control" name="Categories" id="Categories">
         <option value="All">All</option>
@@ -98,11 +102,11 @@
         {
             <option value="3">Category</option>
         }
-        
+
 
     </select>
     <input type="submit" value="Filter"></input>
-</form> 
+</form>
 <table class="table">
     <tr>
         <th>
@@ -140,57 +144,58 @@
 
         if (ViewBag.Cat == null || (ViewBag.Cat).ToLower() == "all" || (ViewBag.Cat).ToLower() == item.Category.ToLower())
         {
-            if (ViewBag.Date == null && ViewBag.Time == null || item.movie_date.ToString() == ViewBag.Date && item.movie_time.ToString()+":00" == ViewBag.Time) { 
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movie_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age_limit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movie_dis)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movie_date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movie_time)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.movie_hall)
-                </td>
-                <td>
+            if (ViewBag.Date == null && ViewBag.Time == null || item.movie_date.ToString() == ViewBag.Date && item.movie_time.ToString() + ":00" == ViewBag.Time)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age_limit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_dis)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movie_hall)
+                    </td>
+                    <td>
 
-                    @if (item.Discount != 0)
-                    {
-                        <p style="text-decoration-line: line-through; color:red">@((item.price).ToString()) &#8362;</p>
-                    }
-                    <p style="color:green">@((item.price * ((100 - item.Discount) / 100)).ToString()) &#8362;</p>
-                </td>
+                        @if (item.Discount != 0)
+                        {
+                            <p style="text-decoration-line: line-through; color:red">@((item.price).ToString()) &#8362;</p>
+                        }
+                        <p style="color:green">@((item.price * ((100 - item.Discount) / 100)).ToString()) &#8362;</p>
+                    </td>
 
-                <td>
-                    <img src="@Url.Content("~/Images/" + item.movie_pic)" height="100" width="100" />
+                    <td>
+                        <img src="@Url.Content("~/Images/" + item.movie_pic)" height="100" width="100" />
 
-                </td>
+                    </td>
 
-                <td>
-                    @using (Html.BeginForm("Booking", "Account", new { id = item.Id }))
-                    {
-                        <input type="submit" value="Booking" style="background-color:aquamarine; color:black" class="btn btn-default" onclick="return confirm('Are you sure you want to Buy ticket to watch @item.movie_name');" />
-                    }
-                    @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                </td>
-            </tr>
+                    <td>
+                        @using (Html.BeginForm("Booking", "Account", new { id = item.Id }))
+                        {
+                            <input type="submit" value="Booking" style="background-color:aquamarine; color:black" class="btn btn-default" onclick="return confirm('Are you sure you want to Buy ticket to watch @item.movie_name');" />
+                        }
+                        @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    </td>
+                </tr>
             }
         }
     }
-    
+
 </table>
 @*<style>
-div { background-image: url('https://www.raindance.org/wp-content/uploads/2019/01/power-of-cinema-2-min-1-1080x608.jpg'); }
-</style>*@
+    div { background-image: url('https://www.raindance.org/wp-content/uploads/2019/01/power-of-cinema-2-min-1-1080x608.jpg'); }
+    </style>*@
