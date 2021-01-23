@@ -36,7 +36,36 @@ namespace MyCinema.Controllers
             }
             return View(m);
         }
-        
+        [HttpGet]
+
+        public ActionResult EditSeat(int id)
+        {
+            Database1Entities dbe = new Database1Entities();
+            cart m = dbe.carts.Find(id);
+            if (m == null)
+            {
+                return HttpNotFound();
+            }
+            return View(m);
+        }
+        [HttpPost]
+        public ActionResult EditSeat(cart c)
+        {
+            string dat = "update [cart] set seatno='" + c.seatno + "'where Id='" + c.Id + "'";
+            SqlCommand comm = new SqlCommand(dat, con);
+            con.Open();
+            comm.ExecuteNonQuery();
+            con.Close();
+          /*  ViewBag.SuccessMessage = "Movie Updated successfully.";
+            dat = "update [BookSeat] set seatno='" + c.seatno + "'where Id='" + c.Id + "'";
+            comm = new SqlCommand(dat, con);
+            con.Open();
+            comm.ExecuteNonQuery();
+            con.Close();
+            ViewBag.SuccessMessage = "Movie Updated successfully.";*/
+            return View();
+
+        }
         [HttpPost]
         public ActionResult Edit(Movy m)
         {

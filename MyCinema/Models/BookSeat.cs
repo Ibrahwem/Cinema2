@@ -21,10 +21,9 @@ namespace MyCinema.Models
         [HiddenInput(DisplayValue = false)]
         public string movieName { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-        [Display(Name = "Movie's Date")]
-        [DataType(DataType.Date)]
-        // [DisplayFormat(DataFormatString ="{0:Day/Mont/year}",ApplyFormatInEditMode =true)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [HiddenInput(DisplayValue = false)]
+
+
         public System.DateTime moviedate { get; set; }
         [Required(ErrorMessage = "This field is required.")]
         [HiddenInput(DisplayValue = false)]

@@ -38,7 +38,8 @@
                 @Html.DisplayFor(modelItem => item.Amount)&#8362;
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.date)
+                @Html.DisplayFor(modelItem => item.date.Day)/@Html.DisplayFor(modelItem => item.date.Month)/@Html.DisplayFor(modelItem => item.date.Year)
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.time)
@@ -53,7 +54,7 @@
                 @Html.DisplayFor(modelItem => item.MovieId)
             </td>
             <td>
-                @using (Html.BeginForm("EditSeat", "Account", new { id = UserId }))
+                @using (Html.BeginForm("EditSeat", "Account", new { id =item.Id , mid=item.MovieId , uid=item.UserId , tid=item.time , did=item.date  }))
                 {
                     <input type="submit" value="Change Seat" style="background-color:slateblue ; color:black" class="btn btn-primary" );" />
                 }
