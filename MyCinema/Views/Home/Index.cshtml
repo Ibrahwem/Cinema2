@@ -2,11 +2,12 @@
 @model IEnumerable<MyCinema.Movy>
 <h2>Wekcome To cinema booking online website</h2>
 <p>
-    @Html.ActionLink("Register", "AddOrEdit", "User") ---- @Html.ActionLink("Login", "Login", "Account")
+    <strong> @Html.ActionLink("Register", "AddOrEdit", "User", new { style = "color: blue ; position:relative;left:0%;font-size:20px;" })
+    @Html.ActionLink("Login", "Login", "Account", new { style = "color: green ; position:relative;left:15%;font-size:20px;" })</strong>
 </p>
 @using (Html.BeginForm("ChoosenSeats", "Account"))
 {
-    <input type="submit" value="Booked Movies" style="background-color:aquamarine; color:black" class="btn btn-default" />
+    <input type="submit" value="Booked Movies" style="background-color:aquamarine; color:black ; position:relative;left:50%;" class="btn btn-default" />
 }
 @*
     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
