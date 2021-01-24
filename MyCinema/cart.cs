@@ -19,7 +19,7 @@ namespace MyCinema
         public System.DateTime date { get; set; }
         public string time { get; set; }
         public string UserId { get; set; }
-        public string seatno { get; set; }
+        public int seatno { get; set; }
         public int MovieId { get; set; }
     }
 }

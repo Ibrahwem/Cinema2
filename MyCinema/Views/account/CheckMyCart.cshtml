@@ -3,10 +3,14 @@
 <br />
 
 @*@using (Html.BeginForm("CheckMyCart", "Account", FormMethod.Get))
+    {
+        <strong>Enter your Id </strong> @Html.TextBox("searching")
+        <input type="submit" value="search" />
+    }*@
+@using (Html.BeginForm("Index", "Home"))
 {
-    <strong>Enter your Id </strong> @Html.TextBox("searching")
-    <input type="submit" value="search" />
-}*@
+    <input type="submit" value="HomePage" style="background-color:chartreuse ; color:black" class="btn btn-primary" );" />
+}
 <table class="table">
     <tr>
         <th>
@@ -30,7 +34,9 @@
         <th></th>
     </tr>
     @{
-            string UserId = null; }
+        string UserId = null;
+
+    }
     @foreach (var item in Model)
     {
         <tr>
@@ -54,9 +60,9 @@
                 @Html.DisplayFor(modelItem => item.MovieId)
             </td>
             <td>
-                @using (Html.BeginForm("EditSeat", "Account", new { id =item.Id , mid=item.MovieId , uid=item.UserId , tid=item.time , did=item.date  }))
+                @using (Html.BeginForm("DeleteSeat", "Account", new { id = item.Id, mid = item.MovieId, sno = item.seatno, uid = item.UserId }))
                 {
-                    <input type="submit" value="Change Seat" style="background-color:slateblue ; color:black" class="btn btn-primary" );" />
+                    <input type="submit" value="Delete Seat" style="background-color:orangered ; color:black" class="btn btn-primary" );" />
                 }
             </td>
         </tr>
@@ -64,11 +70,11 @@
     }
 </table>
 <div>
-    <strong style="color:green">Total Price is : @Model.Sum(i => i.Amount) &#8362;</strong> 
+    <strong style="color:green">Total Price is : @Model.Sum(i => i.Amount) &#8362;</strong>
 </div>
-        @using (Html.BeginForm("Payment", "Account",new { id = UserId }))
-        {
+@using (Html.BeginForm("Payment", "Account", new { id = UserId }))
+{
     <input type="submit" value="Payment" style="background-color:aqua ; color:black" class="btn btn-primary" );" />
 }
-        
+
 

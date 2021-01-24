@@ -36,36 +36,40 @@ namespace MyCinema.Controllers
             }
             return View(m);
         }
-        [HttpGet]
-
-        public ActionResult EditSeat(int id)
-        {
-            Database1Entities dbe = new Database1Entities();
-            cart m = dbe.carts.Find(id);
-            if (m == null)
-            {
-                return HttpNotFound();
-            }
-            return View(m);
-        }
         [HttpPost]
-        public ActionResult EditSeat(cart c)
-        {
-            string dat = "update [cart] set seatno='" + c.seatno + "'where Id='" + c.Id + "'";
-            SqlCommand comm = new SqlCommand(dat, con);
-            con.Open();
-            comm.ExecuteNonQuery();
-            con.Close();
-          /*  ViewBag.SuccessMessage = "Movie Updated successfully.";
-            dat = "update [BookSeat] set seatno='" + c.seatno + "'where Id='" + c.Id + "'";
-            comm = new SqlCommand(dat, con);
-            con.Open();
-            comm.ExecuteNonQuery();
-            con.Close();
-            ViewBag.SuccessMessage = "Movie Updated successfully.";*/
-            return View();
 
+        public ActionResult DeleteSeat(int id,int mid ,int sno,string uid)
+        {
+            BookSeat vmm = new BookSeat();
+            vmm.Full_Name = uid;
+            SqlCommand cmd = new SqlCommand(@"DELETE FROM [dbo].[cart] WHERE [Id]='" + id + "'", con);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            cmd = new SqlCommand(@"DELETE FROM [dbo].[BookSeat] WHERE [seatno]='" + sno + "' and [movieId]='" + mid + "'", con);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            return RedirectToAction("CheckMyCart",vmm);
         }
+        //[HttpPost]
+        //public ActionResult EditSeat(cart c)
+        //{
+        //    string dat = "update [cart] set seatno='" + c.seatno + "'where Id='" + c.Id + "'";
+        //    SqlCommand comm = new SqlCommand(dat, con);
+        //    con.Open();
+        //    comm.ExecuteNonQuery();
+        //    con.Close();
+        //  /*  ViewBag.SuccessMessage = "Movie Updated successfully.";
+        //    dat = "update [BookSeat] set seatno='" + c.seatno + "'where Id='" + c.Id + "'";
+        //    comm = new SqlCommand(dat, con);
+        //    con.Open();
+        //    comm.ExecuteNonQuery();
+        //    con.Close();
+        //    ViewBag.SuccessMessage = "Movie Updated successfully.";*/
+        //    return View();
+
+        //}
         [HttpPost]
         public ActionResult Edit(Movy m)
         {

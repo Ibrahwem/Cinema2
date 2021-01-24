@@ -9,7 +9,7 @@
     <Property Name="date" Type="date" Nullable="false" />
     <Property Name="time" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="seatno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="seatno" Type="int" Nullable="false" />
     <Property Name="MovieId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MaxPrice">
