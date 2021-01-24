@@ -17,6 +17,9 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             SqlCommand cmd = new SqlCommand(@"DELETE FROM [dbo].[Movies] WHERE [Id]='" + id + "'", con);
             con.Open();
             cmd.ExecuteNonQuery();
@@ -28,6 +31,9 @@ namespace MyCinema.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             Database1Entities dbe = new Database1Entities();
             Movy m = dbe.Movies.Find(id);
             if (m == null)
@@ -40,6 +46,9 @@ namespace MyCinema.Controllers
 
         public ActionResult DeleteSeat(int id,int mid ,int sno,string uid)
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             BookSeat vmm = new BookSeat();
             vmm.Full_Name = uid;
             SqlCommand cmd = new SqlCommand(@"DELETE FROM [dbo].[cart] WHERE [Id]='" + id + "'", con);
@@ -73,7 +82,10 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult Edit(Movy m)
         {
-            
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
+
             if (m.movie_hall == "A1" || m.movie_hall == "A2" || m.movie_hall == "A3" || m.movie_hall == "B1" || m.movie_hall == "B2")
              {
                 string dat = "update [Movies] set movie_date='" + m.movie_date+ "',movie_time='"+m.movie_time+ "',movie_hall= '" + m.movie_hall + "',price= '" + m.price + "',Discount= '" + m.Discount + "' where Id='" + m.Id + "'";
@@ -98,14 +110,23 @@ namespace MyCinema.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             return View();
         }
         public ActionResult UserPage()
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             return View();
         }
         public ActionResult AdminPage()
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             return View();
         }
         public ActionResult UsersMoviesList(FormCollection form)
@@ -136,9 +157,9 @@ namespace MyCinema.Controllers
 
 
             //form["moviedaytime"]= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
-            if (Session["DT"] != null)
+            if (TempData["DT"] != null)
             {
-                form["moviedaytime"] = ((DateTime)Session["DT"]).ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
+                form["moviedaytime"] = ((DateTime)TempData["DT"]).ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
             }
             string dt = form["moviedaytime"];
             DateTime datetime;
@@ -148,7 +169,7 @@ namespace MyCinema.Controllers
             {
                 dt = dt.Replace('T', ' ');
                 datetime = Convert.ToDateTime(dt);
-                Session["DT"] = datetime;
+                TempData["DT"] = datetime;
                 ViewBag.Date = datetime.Date.ToString();
                 ViewBag.Time = datetime.TimeOfDay.ToString();
             }
@@ -209,6 +230,9 @@ namespace MyCinema.Controllers
         
         public ActionResult Booking(int id)
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             Database1Entities1 db = new Database1Entities1();
             Database1Entities dbe = new Database1Entities();
             var item = dbe.Movies.Where(a => a.Id == id).FirstOrDefault();
@@ -241,7 +265,9 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult AddBooking(BookSeat vm)
         {
-
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             int seatno = vm.seatno;
             string moviename = vm.movieName;
             DateTime moviedate = vm.moviedate;
@@ -293,7 +319,9 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult PayNow(BookSeat vm)
         {
-
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             int seatno = vm.seatno;
             string moviename = vm.movieName;
             DateTime moviedate = vm.moviedate;
@@ -338,6 +366,9 @@ namespace MyCinema.Controllers
         }
         private bool checkSeat(string movieId ,int  seatno)
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             string check = " select count(*) from [BookSeat] where movieId ='" + movieId+ "' and seatno='" + seatno+"'";
             SqlCommand com = new SqlCommand(check, con);
             con.Open();
@@ -353,7 +384,9 @@ namespace MyCinema.Controllers
 
         public ActionResult ChoosenSeats(string searching)
         {
-
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             Database1Entities1 db = new Database1Entities1();
             return View(db.BookSeats.Where(x => x.Full_Name.Contains(searching)).ToList());
 
@@ -362,6 +395,9 @@ namespace MyCinema.Controllers
 
         public ActionResult Payment(string id)
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             TempData["Sucess"] = "Please enter payment details ";
             if (id != null)
             {
@@ -377,10 +413,16 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult PaymentDone()
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             return RedirectToAction("Index", "Home");
         }
         public ActionResult CheckMyCart(BookSeat vm)
         {
+            Session["DT"] = null;
+            ViewBag.Date = null;
+            ViewBag.Time = null;
             Database1Entities dbe = new Database1Entities();
             return View(dbe.carts.Where(x => x.UserId.Contains(vm.Full_Name)).ToList());
         }

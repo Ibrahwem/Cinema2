@@ -61,14 +61,14 @@ namespace MyCinema.Controllers
             if(ord=="1")
             {
                 var emps1 = from e in dbe.Movies
-                           orderby e.price 
-                           select e;
+                           orderby e.price * (1 - (e.Discount / 100))
+                            select e;
                 return View(emps1.ToList());
             }
             if(ord=="2")
             {
                 var emps1 = from e in dbe.Movies
-                           orderby e.price descending
+                           orderby e.price*(1-(e.Discount/100)) descending
                            select e;
                 return View(emps1.ToList());
             }
