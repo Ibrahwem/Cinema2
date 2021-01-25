@@ -10,7 +10,12 @@
     
 </div>
 <p>
-    <strong> @Html.ActionLink("Add Movie", "AddMovie", "Admin", null, new { style = "color: green ; font-size:20px;" })</strong>
+    <strong>
+        @Html.ActionLink("Add Movie", "AddMovie", "Admin", null, new { style = "color: green ; font-size:20px;" })
+        @Html.ActionLink("Manage Hall Seats Number", "MANAGE", "Account", null, new { style = "color: blue ; position:relative;left:30%;font-size:20px;" })
+    </strong>
+
+    
 
 </p>
 

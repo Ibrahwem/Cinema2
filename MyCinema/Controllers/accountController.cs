@@ -13,7 +13,33 @@ namespace MyCinema.Controllers
     {
 
         readonly SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database1.mdf;Integrated Security=True");
-       
+        [HttpGet]
+        public ActionResult MANAGE()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult MANAGEseat(Hall h)
+        {
+            Database1Entities1 db = new Database1Entities1();
+            var item2 = db.Halls.Where(a => a.hall_id == h.hall_id).FirstOrDefault();
+            if (h.seats_num < item2.seats_num)
+            {
+                ViewBag.notok = "Hall " + item2.hall_id + " must have more than " + item2.seats_num;
+            }
+            else
+            {
+                string dat = "update [Hall] set seats_num='" + h.seats_num + "'where hall_id='" + h.hall_id + "'";
+                SqlCommand comm = new SqlCommand(dat, con);
+                con.Open();
+                comm.ExecuteNonQuery();
+                con.Close();
+                ViewBag.ok = "Seats number in hall [" + h.hall_id + "] updated to " + h.seats_num + " seats";
+            }
+
+            return View("MANAGE");
+        }
+
         [HttpPost]
         public ActionResult Delete(int id)
         {

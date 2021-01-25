@@ -274,6 +274,7 @@
     <Content Include="Views\account\Payment.cshtml" />
     <Content Include="Views\account\PaymentDone.cshtml" />
     <Content Include="Views\account\CheckMyCart.cshtml" />
+    <Content Include="Views\account\MANAGE.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />
