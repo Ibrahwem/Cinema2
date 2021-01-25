@@ -22,14 +22,12 @@ namespace MyCinema.Models
         public string movieName { get; set; }
         [Required(ErrorMessage = "This field is required.")]
         [HiddenInput(DisplayValue = false)]
-
-
         public System.DateTime moviedate { get; set; }
         [Required(ErrorMessage = "This field is required.")]
         [HiddenInput(DisplayValue = false)]
         public string movietime { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-        
+
         public int seatno { get; set; }
         [Required(ErrorMessage = "This field is required.")]
         [Display(Name = "Person_Identity")]

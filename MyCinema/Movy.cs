@@ -35,5 +35,6 @@ namespace MyCinema
         public string Category { get; set; }
         public string Age_limit { get; set; }
         public double Discount { get; set; }
+        public double last { get; set; }
     }
 }

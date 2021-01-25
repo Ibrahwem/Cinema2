@@ -35,6 +35,7 @@
     <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Age_limit" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Discount" Type="float" Nullable="false" />
+    <Property Name="last" Type="float" Nullable="false" />
   </EntityType>
   <EntityContainer Name="Database1ModelStoreContainer">
     <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />

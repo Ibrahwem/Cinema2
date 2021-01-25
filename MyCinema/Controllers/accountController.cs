@@ -88,7 +88,8 @@ namespace MyCinema.Controllers
 
             if (m.movie_hall == "A1" || m.movie_hall == "A2" || m.movie_hall == "A3" || m.movie_hall == "B1" || m.movie_hall == "B2")
              {
-                string dat = "update [Movies] set movie_date='" + m.movie_date+ "',movie_time='"+m.movie_time+ "',movie_hall= '" + m.movie_hall + "',price= '" + m.price + "',Discount= '" + m.Discount + "' where Id='" + m.Id + "'";
+       
+                string dat = "update [Movies] set movie_date='" + m.movie_date+ "',movie_time='"+m.movie_time+ "',movie_hall= '" + m.movie_hall + "',price= '" + m.price*((100-m.Discount)/100) + "',Discount= '" + m.Discount + "',last= '" + m.price + "' where Id='" + m.Id + "'";
                 SqlCommand comm = new SqlCommand(dat, con);
                 con.Open();
                 comm.ExecuteNonQuery();
@@ -243,21 +244,23 @@ namespace MyCinema.Controllers
             vm.movietime = item.movie_time;
             vm.MyHall = item.movie_hall;
             vm.Amount = item.price;
-            string seats_num="0";
-            if (vm.MyHall == "A2" || vm.MyHall == "A1")
-                seats_num = "50";
-            else
-                if (vm.MyHall == "A3" || vm.MyHall == "B1")
-                seats_num = "40";
-            else
-                if (vm.MyHall == "B2")
-                seats_num = "30";
+            var item2 = db.Halls.Where(a => a.hall_id == vm.MyHall).FirstOrDefault();
+            int s = item2.seats_num;
+            //string seats_num="0";
+            //if (vm.MyHall == "A2" || vm.MyHall == "A1")
+            //    seats_num = "50";
+            //else
+            //    if (vm.MyHall == "A3" || vm.MyHall == "B1")
+            //    seats_num = "40";
+            //else
+            //    if (vm.MyHall == "B2")
+            //    seats_num = "30";
 
-            Session["Hall"] = "The hall that the movie will played in is [ " + vm.MyHall + " ] witch contains seats from 1 to " + seats_num ;
+            Session["Hall"] = "The hall that the movie will played in is [ " + vm.MyHall + " ] witch contains seats from 1 to " + s ;
             //  TempData["Amount"] =vm.Amount+ "  shekels will be deducted from your card";
             // TempData["Price"] = "         Movie price = " + vm.Amount;
             Session["choosen"] = " Enter [ " + id + " ] to see the choosen seaets";
-            Session["Seatno"] = "1 to " + seats_num;
+            Session["Seatno"] = "1 to " + s;
             var tuple1 =new Tuple<BookSeat,List<BookSeat>> (vm, db.BookSeats.Where(x => x.movieId.Contains(id.ToString())).ToList());
             return View(tuple1);
         }
@@ -265,6 +268,9 @@ namespace MyCinema.Controllers
         [HttpPost]
         public ActionResult AddBooking(BookSeat vm)
         {
+            Database1Entities1 db = new Database1Entities1();
+            var item2 = db.Halls.Where(a => a.hall_id == vm.MyHall).FirstOrDefault();
+            int s = item2.seats_num;
             Session["DT"] = null;
             ViewBag.Date = null;
             ViewBag.Time = null;
@@ -273,24 +279,24 @@ namespace MyCinema.Controllers
             DateTime moviedate = vm.moviedate;
             string movietime = vm.movietime;
             string movieId = vm.movieId;
-            int seats_num = -1;
-            string seats_num2 = "0";
-            Database1Entities1 db = new Database1Entities1();
+            //int seats_num = -1;
+            //string seats_num2 = "0";
+            
             var tuple1 = new Tuple<BookSeat, List<BookSeat>>(vm, db.BookSeats.Where(x => vm.movieId.Contains(movieId.ToString())).ToList());
 
-            if (vm.MyHall == "A2" || vm.MyHall == "A1")
-            { seats_num = 50; seats_num2 = "50"; }
-            else
-                if (vm.MyHall == "A3" || vm.MyHall == "B1")
-            { seats_num = 40; seats_num2 = "40"; }
-            else
-                if (vm.MyHall == "B2")
-            { seats_num = 30; seats_num2 = "30"; }
-            if (seatno >= 1 && seatno <= seats_num)
+            //if (vm.MyHall == "A2" || vm.MyHall == "A1")
+            //{ seats_num = 50; seats_num2 = "50"; }
+            //else
+            //    if (vm.MyHall == "A3" || vm.MyHall == "B1")
+            //{ seats_num = 40; seats_num2 = "40"; }
+            //else
+            //    if (vm.MyHall == "B2")
+            //{ seats_num = 30; seats_num2 = "30"; }
+            if (seatno >= 1 && seatno <= s)
             {
                 if (checkSeat(movieId, seatno))
                 {
-                    string dat = "Insert into [BookSeat](movieName,moviedate,movietime,seatno,Full_Name,movieId,MyHall) Values('" + moviename + "','" + moviedate + "','" + movietime + "','" + seatno + "','" + vm.Full_Name + "','" + movieId + "','"+vm.MyHall+"')";
+                    string dat = "Insert into [BookSeat](movieName,moviedate,movietime,seatno,Full_Name,movieId,MyHall,Amount) Values('" + moviename + "','" + moviedate + "','" + movietime + "','" + seatno + "','" + vm.Full_Name + "','" + movieId + "','"+vm.MyHall+ "','" + vm.Amount + "')";
                     SqlCommand comm = new SqlCommand(dat, con);
                     con.Open();
                     comm.ExecuteNonQuery();
@@ -311,7 +317,7 @@ namespace MyCinema.Controllers
             }
             else
             {
-                ViewBag.DuplicateMessage = "Seats Number from 1 to " + seats_num2;
+                ViewBag.DuplicateMessage = "Seats Number from 1 to " + s;
                 return View("Booking");
             }
             

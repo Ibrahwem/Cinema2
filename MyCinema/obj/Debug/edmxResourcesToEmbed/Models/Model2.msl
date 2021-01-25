@@ -4,6 +4,7 @@
     <EntitySetMapping Name="BookSeats">
       <EntityTypeMapping TypeName="Database1Model1.BookSeat">
         <MappingFragment StoreEntitySet="BookSeat">
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="MyHall" ColumnName="MyHall" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="movieName" ColumnName="movieName" />
@@ -12,6 +13,15 @@
           <ScalarProperty Name="seatno" ColumnName="seatno" />
           <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
           <ScalarProperty Name="movieId" ColumnName="movieId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Halls">
+      <EntityTypeMapping TypeName="Database1Model1.Hall">
+        <MappingFragment StoreEntitySet="Hall">
+          <ScalarProperty Name="seats_num" ColumnName="seats_num" />
+          <ScalarProperty Name="hall_id" ColumnName="hall_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

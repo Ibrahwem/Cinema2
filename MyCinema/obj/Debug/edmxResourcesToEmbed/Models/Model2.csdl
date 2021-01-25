@@ -6,14 +6,24 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="movieName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="moviedate" Type="DateTime" Nullable="false" />
+    <Property Name="moviedate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="movietime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="seatno" Type="Int32" Nullable="false" />
     <Property Name="Full_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="movieId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MyHall" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Double" Nullable="false" />
   </EntityType>
   <EntityContainer Name="Database1Entities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="BookSeats" EntityType="Self.BookSeat" />
+    <EntitySet Name="Halls" EntityType="Database1Model1.Hall" />
   </EntityContainer>
+  <EntityType Name="Hall">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hall_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="seats_num" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

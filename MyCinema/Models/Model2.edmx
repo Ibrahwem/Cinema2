@@ -17,9 +17,19 @@
           <Property Name="Full_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="movieId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MyHall" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hall_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="seats_num" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="Database1Model1StoreContainer">
           <EntitySet Name="BookSeat" EntityType="Self.BookSeat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -31,16 +41,26 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="movieName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="moviedate" Type="DateTime" Nullable="false" />
+          <Property Name="moviedate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="movietime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="seatno" Type="Int32" Nullable="false" />
           <Property Name="Full_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="movieId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MyHall" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
         </EntityType>
         <EntityContainer Name="Database1Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BookSeats" EntityType="Self.BookSeat" />
+          <EntitySet Name="Halls" EntityType="Database1Model1.Hall" />
         </EntityContainer>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hall_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seats_num" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -50,6 +70,7 @@
           <EntitySetMapping Name="BookSeats">
             <EntityTypeMapping TypeName="Database1Model1.BookSeat">
               <MappingFragment StoreEntitySet="BookSeat">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="MyHall" ColumnName="MyHall" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="movieName" ColumnName="movieName" />
@@ -58,6 +79,15 @@
                 <ScalarProperty Name="seatno" ColumnName="seatno" />
                 <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
                 <ScalarProperty Name="movieId" ColumnName="movieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Halls">
+            <EntityTypeMapping TypeName="Database1Model1.Hall">
+              <MappingFragment StoreEntitySet="Hall">
+                <ScalarProperty Name="seats_num" ColumnName="seats_num" />
+                <ScalarProperty Name="hall_id" ColumnName="hall_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

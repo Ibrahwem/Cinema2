@@ -15,6 +15,7 @@
     <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Age_limit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Discount" Type="Double" Nullable="false" />
+    <Property Name="last" Type="Double" Nullable="false" />
   </EntityType>
   <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Movies" EntityType="Self.Movy" />

@@ -44,7 +44,7 @@ namespace MyCinema.Controllers
                                 {
                                     path = Path.Combine(Server.MapPath("~/Images"), file.FileName);
                                     file.SaveAs(path);
-                                    string dat = "Insert into [Movies](movie_name,movie_dis,movie_date,movie_time,movie_hall,price,movie_pic,Category,Age_limit,Discount) Values('" + m.Name + "','" + m.Description + "','" + m.Date + "','" + m.Time + "','" + m.hall + "','" + m.price + "','" + file.FileName + "','" + m.Category + "','" + m.age + "','" + m.Discount + "')";
+                                    string dat = "Insert into [Movies](movie_name,movie_dis,movie_date,movie_time,movie_hall,price,movie_pic,Category,Age_limit,Discount,last) Values('" + m.Name + "','" + m.Description + "','" + m.Date + "','" + m.Time + "','" + m.hall + "','" + m.price + "','" + file.FileName + "','" + m.Category + "','" + m.age + "','" + m.Discount + "','" + (m.price-m.price) + "')";
                                     SqlCommand comm = new SqlCommand(dat, con);
                                     con.Open();
                                     comm.ExecuteNonQuery();
